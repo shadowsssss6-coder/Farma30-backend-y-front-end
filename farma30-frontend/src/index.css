@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ============================================================
+   FARMA 30 — Sistema de diseño
+   Paleta inspirada en frascos de botica: azul botica oscuro,
+   ámbar de vidrio, hueso de etiqueta de papel.
+   ============================================================ */
+:root {
+  --verde-900: #142A43;
+  --verde-800: #1B3A5C;
+  --verde-700: #23517D;
+  --verde-100: #E4ECF6;
+  --verde-050: #F1F5FA;
+
+  --ambar: #C4842A;
+  --ambar-suave: #FBF0DC;
+  --ambar-texto: #7A5015;
+
+  --rojo: #B2412F;
+  --rojo-suave: #F8E4DF;
+  --rojo-texto: #7C2C1F;
+
+  --hueso: #F6F4EE;
+  --papel: #FFFFFF;
+  --borde: #E2E0D4;
+
+  --texto: #212A22;
+  --texto-suave: #5D6A5E;
+  --texto-inv: #F3F5F1;
+
+  --radio-s: 6px;
+  --radio-m: 10px;
+  --radio-l: 16px;
+  --sombra: 0 1px 2px rgba(23, 41, 33, 0.06), 0 8px 24px -12px rgba(23, 41, 33, 0.18);
+
+  --display: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+  color-scheme: light;
+  color: var(--texto);
+  background: var(--hueso);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--hueso);
+  color: var(--texto);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  color: var(--verde-900);
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+
+h1 { font-size: 34px; }
+h2 { font-size: 24px; }
+h3 { font-size: 18px; }
+
+p { margin: 0 0 12px; color: var(--texto-suave); }
+
+a {
+  color: var(--verde-700);
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover { text-decoration: underline; }
+
+/* ---------- Formularios ---------- */
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="search"],
+select,
+textarea {
+  width: 100%;
+  padding: 11px 13px;
+  font-size: 15px;
+  font-family: var(--sans);
+  color: var(--texto);
+  background: var(--papel);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-s);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  border-color: var(--verde-700);
+  box-shadow: 0 0 0 3px var(--verde-100);
+}
+
+input::placeholder { color: #9CA69B; }
+
+button {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14.5px;
+  padding: 11px 20px;
+  border-radius: var(--radio-s);
+  border: 1px solid var(--verde-900);
+  background: var(--verde-900);
+  color: var(--texto-inv);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+}
+button:hover { background: var(--verde-700); }
+button:active { transform: translateY(1px); }
+button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+button.secundario {
+  background: transparent;
+  color: var(--verde-900);
+  border: 1px solid var(--borde);
+}
+button.secundario:hover { background: var(--verde-050); }
+
+button.peligro {
+  background: var(--rojo);
+  border-color: var(--rojo);
+}
+button.peligro:hover { background: var(--rojo-texto); }
+
+/* ---------- Mensajes de error / vacío ---------- */
+[role="alert"] {
+  background: var(--rojo-suave);
+  color: var(--rojo-texto);
+  border: 1px solid rgba(178, 65, 47, 0.25);
+  border-radius: var(--radio-s);
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 4px 0 16px;
+}
+
+/* ---------- Tarjetas ---------- */
+.tarjeta {
+  background: var(--papel);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-m);
+  box-shadow: var(--sombra);
+}
+
+/* ---------- Tablas ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texto-suave);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--borde);
+}
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--borde);
+}
+tr:last-child td { border-bottom: none; }
+
+/* ---------- Listas simples (páginas aún sin rediseñar) ---------- */
+ul { padding-left: 20px; }
+
+/* ---------- Insignia de estado (firma visual de la app) ---------- */
+.insignia {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.insignia::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.insignia-disponible { background: var(--verde-100); color: var(--verde-800); }
+.insignia-por-vencer { background: var(--ambar-suave); color: var(--ambar-texto); }
+.insignia-vencido,
+.insignia-agotado { background: var(--rojo-suave); color: var(--rojo-texto); }
+
+/* ---------- Precio / datos numéricos ---------- */
+.precio, .dato-mono {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.envoltura-principal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}

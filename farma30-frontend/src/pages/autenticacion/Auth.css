@@ -1,0 +1,56 @@
+.auth-pagina {
+  flex: 1;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--verde-900);
+  background-image: radial-gradient(circle at 15% 20%, rgba(196, 132, 42, 0.15), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(36, 89, 74, 0.5), transparent 50%);
+  padding: 24px;
+}
+
+.auth-tarjeta {
+  width: 100%;
+  max-width: 400px;
+  padding: 36px 34px;
+}
+
+.auth-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.auth-marca-icono {
+  font-size: 26px;
+  color: var(--ambar);
+}
+.auth-marca h1 { margin: 0; }
+
+.auth-subtitulo {
+  margin-bottom: 24px;
+  font-size: 14.5px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-rol-selector {
+  display: flex;
+  gap: 8px;
+}
+.auth-rol-selector button {
+  flex: 1;
+}
+
+.auth-enlaces {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13.5px;
+}

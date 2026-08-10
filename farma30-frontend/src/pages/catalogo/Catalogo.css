@@ -1,0 +1,62 @@
+.catalogo-encabezado {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.catalogo-encabezado p { margin: 0; }
+
+.catalogo-vacio {
+  padding: 48px 24px;
+  text-align: center;
+}
+.catalogo-vacio p { margin: 0; }
+
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.producto-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 18px 20px;
+  color: inherit;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.producto-tarjeta:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(23, 41, 33, 0.08), 0 16px 32px -16px rgba(23, 41, 33, 0.28);
+}
+
+.producto-tarjeta-encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.producto-tarjeta-encabezado h3 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.producto-tarjeta-pie {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.producto-tarjeta-pie .precio {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--verde-800);
+}
+.producto-stock {
+  font-size: 12.5px;
+  color: var(--texto-suave);
+}

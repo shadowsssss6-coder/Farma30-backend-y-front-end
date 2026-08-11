@@ -50,4 +50,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Indica si el usuario tiene permisos para gestionar el inventario
+     * (crear, editar o eliminar productos). Solo integrante y administrador.
+     */
+    public function puedeGestionar(): bool
+    {
+        return in_array($this->rol, ['integrante', 'administrador']);
+    }
 }

@@ -1,0 +1,47 @@
+.carrito-vacio {
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.carrito-vacio p { margin: 0; }
+
+.carrito-lista {
+  padding: 6px 22px;
+}
+
+.carrito-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--borde);
+}
+.carrito-item:last-child { border-bottom: none; }
+
+.carrito-item-nombre {
+  flex: 1;
+  font-weight: 500;
+}
+
+.carrito-item-stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.carrito-item-stepper button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+.carrito-item-stepper span {
+  min-width: 20px;
+  text-align: center;
+}

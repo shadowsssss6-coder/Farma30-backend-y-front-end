@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => 'paths' => ['api/*', 'auth/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'auth/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
@@ -23,7 +23,8 @@ return [
 
     'allowed_origins_patterns' => [
         '#^https://farma30-backend-y-front-.*\.vercel\.app$#',
-        '#^http://localhost:\d+$#',],
+        '#^http://localhost:\d+$#',
+    ],
 
     'allowed_headers' => ['*'],
 

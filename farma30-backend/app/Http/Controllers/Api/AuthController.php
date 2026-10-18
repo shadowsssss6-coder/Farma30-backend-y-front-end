@@ -39,7 +39,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'rol' => 'cliente', // nunca se toma del cliente HTTP
             'numero_de_contacto' => $request->numero_de_contacto,
-    ]);
+        ]);
 
         $token = $usuario->createToken('farma30-web')->plainTextToken;
 
@@ -49,27 +49,43 @@ class AuthController extends Controller
         ], 201);
     }
 
+    /** Solo un administrador puede dar de alta a un integrante (personal de la droguería). */
     public function crearIntegrante(Request $request)
     {
-    abort_unless($request->user()->esAdministrador(), 403, 'Solo un administrador puede crear integrantes.');
+        abort_unless($request->user()->esAdministrador(), 403, 'Solo un administrador puede crear integrantes.');
 
-    $datos = $request->validate([
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|min:8',
-        'nombre_del_integrante' => 'required|string|max:255',
-    ]);
+        $datos = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'nombre_del_integrante' => 'required|string|max:255',
+        ]);
 
-    $integrante = User::create([
-        'name' => $datos['nombre_del_integrante'],
-        'email' => $datos['email'],
-        'password' => Hash::make($datos['password']),
-        'rol' => 'integrante',
-        'nombre_del_integrante' => $datos['nombre_del_integrante'],
-    ]);
+        $integrante = User::create([
+            'name' => $datos['nombre_del_integrante'],
+            'email' => $datos['email'],
+            'password' => Hash::make($datos['password']),
+            'rol' => 'integrante',
+            'nombre_del_integrante' => $datos['nombre_del_integrante'],
+        ]);
 
-    return (new UsuarioResource($integrante))->response()->setStatusCode(201);
-    });
-}
+        return (new UsuarioResource($integrante))->response()->setStatusCode(201);
+    }
+
+    public function recuperarClave(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        return response()->json(['mensaje' => 'Si el correo existe, se enviaron las instrucciones.']);
+    }
+
+    public function actualizarPerfil(Request $request)
+    {
+        $usuario = $request->user();
+        $usuario->update($request->only(['numero_de_contacto', 'nombre_del_integrante']));
+
+        return new UsuarioResource($usuario);
+    }
+
+    public function cerrarSesion(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
 

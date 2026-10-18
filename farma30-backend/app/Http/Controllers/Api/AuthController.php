@@ -49,21 +49,27 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function recuperarClave(Request $request)
+    public function crearIntegrante(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
-        return response()->json(['mensaje' => 'Si el correo existe, se enviaron las instrucciones.']);
-    }
+    abort_unless($request->user()->esAdministrador(), 403, 'Solo un administrador puede crear integrantes.');
 
-    public function actualizarPerfil(Request $request)
-    {
-        $usuario = $request->user();
-        $usuario->update($request->only(['numero_de_contacto', 'nombre_del_integrante']));
+    $datos = $request->validate([
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:8',
+        'nombre_del_integrante' => 'required|string|max:255',
+    ]);
 
-        return new UsuarioResource($usuario);
-    }
+    $integrante = User::create([
+        'name' => $datos['nombre_del_integrante'],
+        'email' => $datos['email'],
+        'password' => Hash::make($datos['password']),
+        'rol' => 'integrante',
+        'nombre_del_integrante' => $datos['nombre_del_integrante'],
+    ]);
 
-    public function cerrarSesion(Request $request)
+    return (new UsuarioResource($integrante))->response()->setStatusCode(201);
+    });
+}
     {
         $request->user()->currentAccessToken()->delete();
 

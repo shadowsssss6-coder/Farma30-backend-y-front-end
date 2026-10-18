@@ -13,13 +13,13 @@ class RegistroRequest extends FormRequest
     }
 
     public function rules(): array
-    {
-        return [
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
-            'rol' => ['required', Rule::in(['cliente', 'integrante'])],
-            'numero_de_contacto' => 'required_if:rol,cliente|nullable|string',
-            'nombre_del_integrante' => 'required_if:rol,integrante|nullable|string',
-        ];
-    }
+{
+    return [
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:8',
+        // El registro público SOLO crea clientes. Los integrantes los crea un administrador.
+        'rol' => ['sometimes', Rule::in(['cliente'])],
+        'numero_de_contacto' => 'required|string|max:30',
+    ];
+}
 }

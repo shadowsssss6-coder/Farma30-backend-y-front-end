@@ -34,13 +34,12 @@ class AuthController extends Controller
     public function registrar(RegistroRequest $request)
     {
         $usuario = User::create([
-            'name' => $request->nombre_del_integrante ?? $request->email,
+            'name' => $request->email,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'rol' => $request->rol,
+            'rol' => 'cliente', // nunca se toma del cliente HTTP
             'numero_de_contacto' => $request->numero_de_contacto,
-            'nombre_del_integrante' => $request->nombre_del_integrante,
-        ]);
+    ]);
 
         $token = $usuario->createToken('farma30-web')->plainTextToken;
 

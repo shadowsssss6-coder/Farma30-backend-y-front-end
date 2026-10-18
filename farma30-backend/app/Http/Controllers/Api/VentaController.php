@@ -43,18 +43,20 @@ class VentaController extends Controller
     /** RF03 — resumen de ventas por día, semana o mes. */
     public function resumen()
     {
+        $this->authorize('viewResumen', Venta::class); 
         $hoy = now();
 
         return response()->json([
             'cantidad_vendida_en_el_dia' => Venta::whereDate('fecha_hora', $hoy->toDateString())->sum('cantidad_vendida'),
             'cantidad_vendida_en_la_semana' => Venta::whereBetween('fecha_hora', [$hoy->copy()->startOfWeek(), $hoy->copy()->endOfWeek()])->sum('cantidad_vendida'),
-            'cantidad_vendida_en_el_mes' => Venta::whereMonth('fecha_hora', $hoy->month)->sum('cantidad_vendida'),
+            'cantidad_vendida_en_el_mes' => Venta::whereYear('fecha_hora', $hoy->year)->whereMonth('fecha_hora', $hoy->month)->sum('cantidad_vendida'),
         ]);
     }
 
     /** RF08 — detalle de una venta. */
     public function show(Venta $venta)
     {
+        $this->authorize('ver', $venta);  
         return new VentaResource($venta->load('producto'));
     }
 }

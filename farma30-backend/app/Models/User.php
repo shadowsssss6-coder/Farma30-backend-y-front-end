@@ -59,4 +59,8 @@ class User extends Authenticatable
     {
         return in_array($this->rol, ['integrante', 'administrador']);
     }
+    public function esAdministrador(): bool
+    {
+    return $this->rol === 'administrador';
+    }
 }

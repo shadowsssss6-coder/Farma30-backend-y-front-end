@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Perfil / sesión (RF15)
     Route::put('/usuarios/actualizar', [AuthController::class, 'actualizarPerfil']);
     Route::post('/auth/logout', [AuthController::class, 'cerrarSesion']);
+    Route::post('/usuarios/integrantes', [AuthController::class, 'crearIntegrante']);
 
     // Catálogo (RF02, RF04, RF05, RF10) — lectura abierta a cualquier usuario autenticado
     Route::get('/productos', [ProductoController::class, 'index']);

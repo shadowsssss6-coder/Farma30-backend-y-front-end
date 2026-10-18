@@ -18,4 +18,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 EXPOSE 10000
 
 # Corre las migraciones y luego levanta el servidor, cada vez que arranca el contenedor
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan migrate --force && php artisan db:seed --class=AdminSeeder --force && php artisan serve --host=0.0.0.0 --port=$PORT
